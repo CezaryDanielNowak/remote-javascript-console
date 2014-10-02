@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=utf-8 />
+  <title>Test page</title>
+  <script src="./console.php?key=TEST"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script>
+    function logSomething() {
+      var methods = [
+        "log", "info", "warn", "error", "debug", "trace", "dir", "group",
+        "groupCollapsed", "groupEnd", "time", "timeEnd", "profile", "profileEnd",
+        "dirxml", "assert", "count", "markTimeline", "timeStamp", "clear"
+      ];
+
+      var method = methods[Math.floor(Math.random()*methods.length)];
+
+      console[method]('Trolololo');
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <p>
+      <button type="button" class="btn btn-default navbar-btn" onclick="logSomething()">Log something</button>
+    </p>
+  </div>
+</body>
+</html>
