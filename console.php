@@ -5,7 +5,7 @@
 */
 
 
-$key = isset($_GET['id']) ? $_GET['id'] 			: 'default';
+$key = isset($_GET['key']) ? $_GET['key'] 			: 'default';
 $method = isset($_GET['method']) ? $_GET['method']	: false;
 $args = isset($_GET['args']) ? $_GET['args']		: false;
 $async = isset($_GET['async']) ? $_GET['async']		: true;
