@@ -42,18 +42,20 @@ In javascript:
 PARAMS:
 ===========
 `key`	default: default
-
-	Which log file will be used.
-	If not exist, /log/{$key} will be generated automaticly.
-	Select any key, you want.
-	Dont use special characters like /, \, &, | in your key,
-	because it is filename.
+---
+Which log file will be used.
+If not exist, /log/{$key} will be generated automaticly.
+Select any key, you want.
+Dont use special characters like /, \, &, | in your key,
+because it is filename.
 
 `async`	default: true
-	when it's "false", console.log triggers async request to console.
+---
+when it's "false", console.log triggers async request to console.
 
 `consoleUrl`	default: null
-	when it's not passed, the only way you can insert
-	console.php to your code is: (Basic usage)
-	When it contains console.php url, you can get the script
-	any way, you want (Advanced usage).
+---
+when it's not passed, the only way you can insert
+console.php to your code is: (Basic usage)
+When it contains console.php url, you can get the script
+any way, you want (Advanced usage).
