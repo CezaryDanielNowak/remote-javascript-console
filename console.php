@@ -1,10 +1,4 @@
 <?php
-/*
-	simple usage:
-	<script src="http://localhost/console/console.php?key=XYZ"></script>
-
-	make sure if you /logs/ directory is writable.
-*/
 
 /**** CONFIGS: ****/
 /*
@@ -26,16 +20,18 @@ $async = isset($_GET['async']) ? ($_GET['async'] === 'false' ? false : true) : t
 				when it's not passed, the only way you can insert
 				console.php to your code is: <script src=".."></script>
 				and you can not use async or defer.
-				When it contains console.php url, yo ucan get the script
+				When it contains console.php url, you can get the script
 				any way, you want.
 */
 $consoleUrl = isset($_GET['consoleUrl']) ? $_GET['consoleUrl']: null;
 
 
+/**** INTERNAL VARIABLES: ****/
 $_args = isset($_GET['_args']) ? $_GET['_args']		: false;
 $_method = isset($_GET['_method']) ? $_GET['_method']	: false;
 
-/* write logs, logToServer target */
+
+/****  WHAT WILL HAPPEN ON console.log(...) on the backend side: ****/
 if($_method !== false && $_args !== false) {
 	$file = "./logs/{$key}.log";
 	$data = date('c') . "|{$_method}|{$_args}\n";
@@ -43,7 +39,7 @@ if($_method !== false && $_args !== false) {
 	die('OK');
 }
 
-/* default action: get javascript */
+/****  GET JAVASCRIPT ****/
 header('Content-Type: application/javascript');
 ?>
 <?php if($consoleUrl): ?>
