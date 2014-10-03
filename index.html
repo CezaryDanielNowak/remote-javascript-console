@@ -3,29 +3,54 @@
 <head>
   <meta charset=utf-8 />
   <title>Test page</title>
-  <script src="./console.php?key=TEST"></script>
+  <script src="./console.php?key=TEST&async=false"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  <script>
-    function logSomething() {
-      var methods = [
-        "log", "info", "warn", "error", "debug", "trace", "dir", "group",
-        "groupCollapsed", "groupEnd", "time", "timeEnd", "profile", "profileEnd",
-        "dirxml", "assert", "count", "markTimeline", "timeStamp", "clear"
-      ];
-
-      var method = methods[Math.floor(Math.random()*methods.length)];
-
-      console[method]('Trolololo');
-    }
-  </script>
 </head>
 <body>
   <div class="container">
     <p>
-      <button type="button" class="btn btn-default navbar-btn" onclick="logSomething()">Log something</button>
+      <pre id="log">console.log('some log');</pre>
+    </p>
+    <p>
+      <button type="button" class="btn btn-default navbar-btn" data-target="log">Execute code</button>
     </p>
   </div>
+  <div class="container">
+    <p>
+      <pre id="warn">console.warn('Warning: Eat more fruits.', 'like', {fruit: 'banana'});</pre>
+    </p>
+    <p>
+      <button type="button" class="btn btn-default navbar-btn" data-target="warn">Execute code</button>
+    </p>
+  </div>
+  <div class="container">
+    <p>
+      <pre id="error">console.error('Error !!! Go away!', [1,2,3,4]);</pre>
+    </p>
+    <p>
+      <button type="button" class="btn btn-default navbar-btn" data-target="error">Execute code</button>
+    </p>
+  </div>
+  <div class="container">
+    <h1>LOG preview: <small>You'll see 404 Error if empty</small></h1>
+    <iframe src="logs/TEST.log" style="width:100%; height:300px;" id="preview"></iframe>
+  </div>
+  <script>
+    var frame = document.getElementById('preview');
+    $('button').on('click', function() {
+      var targetElement = document.getElementById(this.dataset.target);
+
+      eval(targetElement.innerHTML);
+      frame.contentWindow.location.reload(true);
+    });
+
+    $(frame).on('load', function() {
+      var $contents = $(this).contents();
+      $contents.scrollTop($contents.height());
+    });
+
+  </script>
 </body>
 </html>
